@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	//"io/ioutil"
 	"net/http"
 )
 
@@ -47,7 +46,7 @@ func (c *Client) post(route string, op interface{}, v interface{}) error {
 	fmt.Println(r_route)
 
 	if op != nil {
-		//fmt.Println("payloads are  set")
+
 		m_json, err := json.Marshal(op)
 		if err != nil {
 			return err
@@ -62,7 +61,7 @@ func (c *Client) post(route string, op interface{}, v interface{}) error {
 			return err
 		}
 	} else { //don't sending data over POST method
-		//fmt.Println("Payloads are not set")
+
 		request, err := http.NewRequest("POST", r_route, nil)
 		if err != nil {
 			return err
@@ -94,7 +93,7 @@ func (c *Client) put(route string, op, v interface{}) error {
 }
 func (c *Client) delete(route string) error {
 	r_route := fmt.Sprintf("%s/%s", c.URL, route)
-	//fmt.Println(r_route)
+
 	request, err := http.NewRequest("DELETE", r_route, nil)
 	if err != nil {
 		return err
@@ -122,11 +121,6 @@ func (c *Client) PerformReqest(req *http.Request, v interface{}) error {
 	return nil
 }
 
-/*func (c *Client) PerformAction(route string, id int, params Params) error {
-	r_route := fmt.Sprintf("%s/%d.api10json", c.URL, id)
-	err :=
-
-}*/
 func decode_resons(resp *http.Response, v interface{}) error {
 	if resp.StatusCode < 200 || resp.StatusCode >= 400 {
 		return fmt.Errorf("Something Went Wrong: %#s:%#s", resp.StatusCode, resp.Body)
