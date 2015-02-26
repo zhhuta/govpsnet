@@ -69,3 +69,13 @@ type VirtualMachine struct {
 	VirtualMachineLicenses []interface{} `json:"virtual_machine_licenses"`
 	VirtualMachineStatus   string        `json:"virtual_machine_status"`
 }
+
+type NewVMInstant struct {
+	Label             string `json:"label"`
+	Hostname          string `json:"hostname"`
+	SystemTemplateID  int    `json:"system_template_id"`
+	CloudID           int    `json:"cloud_id"`
+	BackupsEnabled    bool   `json:"backups_enabled"`
+	RsyncBackupEnable bool   `json:"rsync_backups_enabled"`
+	SlicesRequired    int    `json:"slices_required"`
+}
