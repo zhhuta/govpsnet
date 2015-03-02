@@ -123,7 +123,12 @@ func (c *Client) PerformReqest(req *http.Request, v interface{}) error {
 
 func decode_resons(resp *http.Response, v interface{}) error {
 	if resp.StatusCode < 200 || resp.StatusCode >= 400 {
-		return fmt.Errorf("Something Went Wrong: %#s:%#s", resp.StatusCode, resp.Body)
+		api_error := &ErrorApi{}
+		err := json.NewDecoder(resp.Body).Decode(api_error)
+		if err != nil {
+			return fmt.Errorf("govpsnet: Error during decoding json into struct: %s", err)
+		}
+		return api_error
 	}
 	if v != nil {
 		//json2unmashal, _ := ioutil.ReadAll(resp.Body)

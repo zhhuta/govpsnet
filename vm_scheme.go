@@ -1,6 +1,17 @@
 //vm_scheme.go
 package govpsnet
 
+var (
+	vm_action_start    = "virtual_machines/%d/power_on.api10json"
+	vm_info            = "virtual_machines/%d.api10json"
+	vm_list            = "virtual_machines.api10json"
+	vm_shutdown        = "virtual_machines/%d/shutdown.api10json"
+	vm_reboot          = "virtual_machines/%d/reboot.api10json"
+	vm_reboot_recovery = "virtual_machines/%d/reboot.api10json"
+	vm_rebuild         = "virtual_machines/%d/rebuild.api10json"
+	vm_network_rebuild = "virtual_machines/%d/rebuild_network.api10json"
+)
+
 type IpAddresses []struct {
 	IpAddress `json:"ip_addresses"`
 }
