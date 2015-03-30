@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	c, _ := govpsnet.NewConnection("zhhuta@gmail.com", "0CQ0lad5LNV0QQ==")
+	c, _ := govpsnet.NewConnection("***********", "*******")
 	
 	vm_list, err := c.Virtual_Machines_List()
 	if err != nil {
