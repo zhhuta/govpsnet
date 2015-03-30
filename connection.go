@@ -27,7 +27,6 @@ func NewConnection(email, api_key string) (*Client, error) {
 
 func (c *Client) get(route string, v interface{}) error {
 	r_route := fmt.Sprintf("%s/%s", c.URL, route)
-	//fmt.Println(r_route)
 	request, err := http.NewRequest("GET", r_route, nil)
 	if err != nil {
 		return err
@@ -126,14 +125,11 @@ func decode_resons(resp *http.Response, v interface{}) error {
 		api_error := &ErrorApi{}
 		err := json.NewDecoder(resp.Body).Decode(api_error)
 		if err != nil {
-			return fmt.Errorf("govpsnet: Error during decoding json into struct: %s", err)
+			return fmt.Errorf("govpsnet: Error during decoding json into struct: %#s", err)
 		}
 		return api_error
 	}
 	if v != nil {
-		//json2unmashal, _ := ioutil.ReadAll(resp.Body)
-		//resp.Body.Close()
-		//err := json.Unmarshal(json2unmashal, &v)
 		err := json.NewDecoder(resp.Body).Decode(&v)
 		if err != nil {
 			return fmt.Errorf("govpsnet: Error during decoding json into struct: %s", err)
