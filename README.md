@@ -7,7 +7,7 @@ package main
 
 import (
 	"fmt"
-	"govpsnet"
+	"github.com/zhhuta/govpsnet"
 )
 
 func main() {
