@@ -2,7 +2,10 @@
 
 package govpsnet
 
-var cloud_lists = "available_clouds.api10json"
+var (
+	cloud_lists    = "available_clouds.api10json"
+	ssd_cloud_list = "available_ssd_clouds.api10json"
+)
 
 type Cloud struct {
 	Available             bool    `json:"available"`
@@ -25,6 +28,7 @@ type Clouds []struct {
 }
 
 func (c *Client) Get_Clouds() (Clouds, error) {
+	// Get a list of General clouds
 	r := []struct {
 		Cloud `json:"cloud"`
 	}{}
@@ -34,4 +38,16 @@ func (c *Client) Get_Clouds() (Clouds, error) {
 	}
 	return r, nil
 
+}
+
+func (c *Client) Get_ssd_Clouds() Clouds.error {
+	//Get a list of SSD clouds
+	r := []struct {
+		Cloud `json:"cloud"`
+	}{}
+	err := c.get(ssd_cloud_lists, &r)
+	if err != nil {
+		return nil, err
+	}
+	return r, nil
 }
